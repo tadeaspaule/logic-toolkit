@@ -6,6 +6,7 @@ Holds the following functionality for working with logic formulas:<br>
     - Convert formula to CNF or DNF form<br>
     - Check if a formula is a tautology / contradiction / satisfiable<br>
     - Get True interpretations<br>
-    - Get definite rules from formula<br>
+    - Get definite rules from a given formula<br>
+    - Manually add definite rules<br>
     - Make queries<br>
     - Generate random logical formulas<br>
