@@ -33,7 +33,7 @@ class LogicToolkit:
         If self._debugging is True, prints a given message
         '''
         if self._debugging:
-            my_print(message)
+            padded_print(message)
    
     def __negate(self,lit_or_form):
         '''
@@ -1308,12 +1308,12 @@ def print_valid_commands():
     Prints the list of valid commands to the console
     '''
 
-    my_print("Here is a list of available commands:")
+    padded_print("Here is a list of available commands:")
     print(valid_commands[0],end="")
     for vc in valid_commands[1:]:
         print(", "+vc,end="")
 
-def my_print(string):
+def padded_print(string):
     '''
     Gives the print to console a slight padding on the left
     '''
@@ -1322,7 +1322,14 @@ def my_print(string):
     print(string)
 
 
-my_print("Welcome to LogicToolkit, a toolkit for working with logical formulas by Tadeas Paule")
+padded_print("Welcome to LogicToolkit, a toolkit for working with logical formulas by Tadeas Paule")
+print()
+padded_print("Use the following notation to write formulas:")
+padded_print("Single, uppercase characters for literals, for example A, B")
+padded_print("'a'  - conjunction, for example AaB, AaBaC")
+padded_print("'v'  - disjunction, for example Av(BaC)")
+padded_print("'!'  - negation, for example !A, !(AvB)")
+padded_print("'->' - implication, for example A->B, A->(BvC)")
 print()
 print_valid_commands()
 print()
@@ -1330,7 +1337,7 @@ while True:
     print()
     input_words = input("  > ").split(" ")
     if input_words[0] not in valid_commands:
-        my_print("Command not recognised")
+        padded_print("Command not recognised")
         print_valid_commands()
         print()
     else:
@@ -1345,150 +1352,150 @@ while True:
 
         if command == "help":
             if second is None:
-                my_print("LogicProgram is a toolkit for working with logical formulas")
+                padded_print("LogicProgram is a toolkit for working with logical formulas")
                 print_valid_commands()
                 print()
-                my_print("If you want to know what a command does, enter 'help command-name', for example 'help to-cnf'")
+                padded_print("If you want to know what a command does, enter 'help command-name', for example 'help to-cnf'")
             else:
-                my_print(command_descriptions.get(second,second + " is not a valid command name"))
+                padded_print(command_descriptions.get(second,second + " is not a valid command name"))
         
         elif command == "debugging":
             if second is None or second not in ["on", "off"]:
-                my_print("You have to call either 'debugging on' or 'debugging off'")
+                padded_print("You have to call either 'debugging on' or 'debugging off'")
             elif second == "on":
                 ltk._debugging = True
-                my_print("Debugging messages turned on")
+                padded_print("Debugging messages turned on")
             else:
                 ltk._debugging = False
-                my_print("Debugging messages turned off")
+                padded_print("Debugging messages turned off")
         
         elif command == "is-tautology":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     f_list = ltk.formula_to_list(second)
                     is_tautology = ltk.is_tautology(f_list)
                     msg = second + " is a tautology" if is_tautology else second + " is not a tautology"
-                    my_print(msg)
+                    padded_print(msg)
         
         elif command == "is-contradiction":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     f_list = ltk.formula_to_list(second)
                     is_contradiction = ltk.is_contradiction(f_list)
                     msg = second + " is a contradiction" if is_contradiction else second + " is not a contradiction"
-                    my_print(msg)
+                    padded_print(msg)
         
         elif command == "is-satisfiable":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     f_list = ltk.formula_to_list(second)
                     is_satisfiable = ltk.is_satisfiable(f_list)
                     msg = second + " is satisfiable" if is_satisfiable else second + " is not satisfiable"
-                    my_print(msg)
+                    padded_print(msg)
         
         elif command == "to-cnf":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     f_list = ltk.formula_to_list(second)
-                    my_print(ltk.to_cnf(f_list,return_string=True))
+                    padded_print(ltk.to_cnf(f_list,return_string=True))
         
         elif command == "to-dnf":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     f_list = ltk.formula_to_list(second)
-                    my_print(ltk.to_dnf(f_list,return_string=True))
+                    padded_print(ltk.to_dnf(f_list,return_string=True))
         
         elif command == "add-rule":
             if second is None:
-                my_print("You have to specify a rule")
+                padded_print("You have to specify a rule")
             else:
                 is_valid = ltk._is_valid_rule(second)
                 if is_valid:
                     ltk.add_rule(second)
-                    my_print("Rule added")
+                    padded_print("Rule added")
                 else:
-                    my_print("Invalid rule entered")
-                    my_print("Enter rules in this form: 'A', 'A->B', 'A,B->C', etc.")
+                    padded_print("Invalid rule entered")
+                    padded_print("Enter rules in this form: 'A', 'A->B', 'A,B->C', etc.")
                     
         
         elif command == "get-rules-from":
             if second is None:
-                my_print("You have to specify a logical formula")
+                padded_print("You have to specify a logical formula")
             else:
                 is_valid = ltk._is_valid_formula(second)
                 
                 if not is_valid:
-                    my_print(second + " is not a valid logical formula")
+                    padded_print(second + " is not a valid logical formula")
                 else:
                     ltk.string_to_definite_rules(second)
-                    my_print("The formula has been processed for definite rules")
+                    padded_print("The formula has been processed for definite rules")
         
         elif command == "list-rules":
             for k,v in ltk._definite_rules.items():
                 if type(v) == list:
                     for option in ltk._definite_rules[k]:
-                        my_print(option + " -> " + k)
+                        padded_print(option + " -> " + k)
                 else:
-                    my_print("-> " + k)
+                    padded_print("-> " + k)
         
         elif command == "clear-rules":
             ltk._definite_rules = {}
             ltk._known_literals = set()
-            my_print("The program's rules have been cleared")
+            padded_print("The program's rules have been cleared")
         
         elif command == "query":
             if second is None:
-                my_print("You have to specify a literal")
+                padded_print("You have to specify a literal")
             elif type(second) != str or len(second) > 1 or not second.isupper():
-                my_print("Invalid input")
-                my_print("Only a single, uppercase letter is considered a valid input")
+                padded_print("Invalid input")
+                padded_print("Only a single, uppercase letter is considered a valid input")
             else:
                 result = ltk.make_query(second)
                 msg = second + " is definitely True" if result else second + " is not definitely True"
-                my_print(msg)
+                padded_print(msg)
 
         elif command == "make-random":
-            my_print(ltk.make_random_formula())
+            padded_print(ltk.make_random_formula())
         
         
         elif command == "quit":
             print()
-            my_print("Thank you for trying LogicProgram.")
+            padded_print("Thank you for trying LogicProgram.")
             break
         
         
         else:
-            my_print(command + " is not a valid command")
+            padded_print(command + " is not a valid command")
         
         
     
