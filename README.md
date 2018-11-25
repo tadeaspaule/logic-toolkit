@@ -11,7 +11,7 @@ Holds the following functionality for working with logic formulas:<br>
     - Make queries<br>
     - Generate random logical formulas<br>
 <br>
-Use the following notation when inputting logical formulas:
+The following notation is expected when inputting logical formulas:<br>
     - Single, uppercase letters for literals (A,B,...)<br>
     - 'a'  = conjunction, for example AaB<br>
     - 'v'  = disjunction, for example AvC, Av(BaC)<br>
