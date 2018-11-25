@@ -10,3 +10,10 @@ Holds the following functionality for working with logic formulas:<br>
     - Manually add definite rules<br>
     - Make queries<br>
     - Generate random logical formulas<br>
+<br>
+Use the following notation when inputting logical formulas:
+    - Single, uppercase letters for literals (A,B,...)<br>
+    - 'a'  = conjunction, for example AaB<br>
+    - 'v'  = disjunction, for example AvC, Av(BaC)<br>
+    - '->' = implication, for example A->B, A->(BvC)<br>
+    - '!'  = negation, for example !A, A->!(BvC)<br>
